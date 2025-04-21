@@ -1,1 +1,1 @@
-# bayesian-survival-tutorial
+# bayesian-stratified-survival-tutorial
