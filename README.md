@@ -1,1 +1,1 @@
-# bayesian-stratified-survival-tutorial
+# Bayesian Stratified Survival Analysis Tutorial
