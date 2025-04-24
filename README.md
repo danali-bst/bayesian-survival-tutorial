@@ -188,9 +188,9 @@ Result: overall_posterior is a matrix of size [max_day x n.mc], combining the dr
 --------------------------------------------------------------------------------
 ## 6. Methodology References
 
-1. Your Paper: The section “Bayesian inferences of the survival function and its summary measures.”
+1. Manuscript section “Bayesian inferences of the survival function and its summary measures.”
 2. Beta-Binomial Background: Hjort (1990), Fleming & Harrington (1991).
-3. RMST Discussion: Various references in your paper about the advantages over hazard ratios.
+3. RMST Discussion: Various references in manuscript about the advantages over hazard ratios.
 
 --------------------------------------------------------------------------------
 ## 7. Closing Notes
@@ -199,4 +199,4 @@ Result: overall_posterior is a matrix of size [max_day x n.mc], combining the dr
 - It is straightforward, requiring only binomial likelihoods and Beta priors.
 - For real-world data with more strata, repeat the same pattern: call beta.bin for each stratum, align row lengths, then weight and sum the posterior draws.
 
-**We hope this tutorial helps you explore a model-free Bayesian approach to stratified survival analysis!** For questions or contributions, please open an issue or pull request in this repository, or contact Daniel Paydarfar.
+**We hope this tutorial helps you explore a model-free Bayesian approach to stratified survival analysis!** For questions or contributions, please open an issue or pull request in this repository, or contact Daniel Paydarfar at danielpaydarfar@fas.harvard.edu.
