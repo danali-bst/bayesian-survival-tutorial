@@ -1,8 +1,5 @@
 # Bayesian Stratified Survival Analysis Tutorial
 
-
-# Stratified Bayesian Survival Analysis: Tutorial
-
 This tutorial demonstrates how to conduct a **stratified** Bayesian survival analysis using a discrete-time **beta-binomial** approach, as described in the paper:
 > Bayesian Stratified Analysis of Treatment Effects with Event Time Observations in Comparative Clinical Trials: A Model-Free Approach.
 
