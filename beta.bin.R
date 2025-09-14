@@ -23,7 +23,7 @@
 #                distribution (default 10,000).
 #   alpha      : The alpha parameter of the prior Beta(alpha, beta). Defaults to 0.001 
 #                for a weakly informative prior.
-#   beta       : The beta parameter of the prior Beta(alpha, beta). Defaults to 0.01.
+#   beta       : The beta parameter of the prior Beta(alpha, beta). Defaults to 1.
 #
 # Returns:
 #   A matrix of dimension length(discretized_time) x n.mc, where each column
