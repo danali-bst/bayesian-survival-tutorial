@@ -43,7 +43,16 @@ In a **stratified** design, you have multiple strata (groups) defined by combina
     # Source the R script
     source("beta.bin.R")
 
-That’s it—beta.bin is now available in your R session.
+Alternatively, you can load the function directly into R via the following command in R:
+
+```r
+# Source directly from GitHub
+source("https://raw.githubusercontent.com/danali-bst/bayesian-cif/main/bayesian_cif.R")
+```
+
+Now `beta_bin.R` is available in your R session.
+
+Any of these work. That’s it—beta.bin is now available in your R session.
 
 --------------------------------------------------------------------------------
 ## 3. Single-Stratum Example
