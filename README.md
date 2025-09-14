@@ -16,7 +16,7 @@ The beta.bin function computes the **posterior draws** for the survival function
     - time.vec: numeric vector of observed times (e.g., days)
     - censor.vec: numeric vector (same length) with 1 = event at time.vec[i], 0 = censored
     - n.mc: number of Monte Carlo draws (e.g., 10,000)
-    - alpha, beta: Beta prior hyperparameters (weakly informative defaults: 0.001, 0.01)
+    - alpha, beta: Beta prior hyperparameters (weakly informative defaults: 0.001, 1)
 - Output:
     - A matrix whose rows correspond to time points (from day 1 up to the max of time.vec), and columns correspond to Monte Carlo draws of the survival function.
 
