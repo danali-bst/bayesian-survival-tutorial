@@ -155,6 +155,7 @@ prop_s2 <- n_s2 / (n_s1 + n_s2)
 
 overall_posterior <- prop_s1 * res_s1_pad + prop_s2 * res_s2_pad
 overall_mean <- apply(overall_posterior, 1, mean)
+```
 
     # Quick plot
     plot(
