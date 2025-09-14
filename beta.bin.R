@@ -54,7 +54,7 @@
 #   (2) Adapted from: [Manuscript Title & Methodology Section]
 ################################################################################
 
-beta.bin <- function(time.vec, censor.vec, n.mc = 10000, alpha = 0.001, beta = 0.01) {
+beta.bin <- function(time.vec, censor.vec, n.mc = 10000, alpha = 0.001, beta = 1) {
   
   # Number of subjects
   n <- length(time.vec)  # previously nrow(...) but here time.vec is a vector
