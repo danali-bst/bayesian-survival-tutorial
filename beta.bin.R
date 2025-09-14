@@ -40,15 +40,6 @@
 #      internally as survival_probability, then finally return 1 - survival_probability,
 #      which corresponds to the survival function at each day.
 #
-# Example usage (toy data):
-#   set.seed(123)
-#   times   <- c(1,2,2,5,5,5,10,10,10,10)
-#   censors <- c(1,1,1,1,0,0,1,0,0,0)
-#   result_matrix <- beta.bin(time.vec = times, censor.vec = censors,
-#                             n.mc = 1000, alpha = 0.001, beta = 0.01)
-#   posterior_means <- apply(result_matrix, 1, mean)
-#   plot(posterior_means, type="s", ylab="Posterior Mean Survival", xlab="Day")
-#
 # Author: 
 #   (1) Daniel Paydarfar (developer of this code/tutorial)
 #   (2) Adapted from: [Manuscript Title & Methodology Section]
