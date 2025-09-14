@@ -47,7 +47,7 @@ Alternatively, you can load the function directly into R via the following comma
 
 ```r
 # Source directly from GitHub
-source("https://raw.githubusercontent.com/danali-bst/bayesian-survival-tutorial/main/beta_bin.R")
+source("https://raw.githubusercontent.com/danali-bst/bayesian-survival-tutorial/main/beta.bin.R")
 ```
 
 Now `beta_bin.R` is available in your R session.
