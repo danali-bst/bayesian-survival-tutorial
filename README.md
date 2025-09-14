@@ -122,38 +122,39 @@ To get an overall survival curve for the entire population (both strata):
 2. Weight each curve by the stratum’s proportion in the overall sample.
 3. Sum those weighted survival curves at each time point.
 
-    # 1. Identify the maximum day across strata
-    max_day <- max(time_s1, time_s2)
+```r
+# 1. Identify the maximum day across strata
+max_day <- max(time_s1, time_s2)
 
-    # 2. We'll pad the smaller matrix so each posterior matrix has rows up to 'max_day'.
-    pad_res <- function(res_matrix, new_max_day) {
-      old_max_day <- nrow(res_matrix)
-      if (old_max_day < new_max_day) {
-        # replicate the last row or set NAs
-        padded <- rbind(
-          res_matrix,
-          matrix(
-            res_matrix[old_max_day, ], 
-            nrow  = new_max_day - old_max_day, 
-            ncol  = ncol(res_matrix),
-            byrow = TRUE
-          )
-        )
-        return(padded)
-      } else {
-        return(res_matrix)
-      }
-    }
+# 2. Pad each matrix up to 'max_day'
+pad_res <- function(res_matrix, new_max_day) {
+  old_max_day <- nrow(res_matrix)
+  if (old_max_day < new_max_day) {
+    last_row <- res_matrix[old_max_day, , drop = FALSE]
+    padded <- rbind(
+      res_matrix,
+      matrix(
+        rep(last_row, new_max_day - old_max_day),
+        nrow = new_max_day - old_max_day,
+        ncol = ncol(res_matrix),
+        byrow = TRUE
+      )
+    )
+    return(padded)
+  } else {
+    return(res_matrix)
+  }
+}
 
-    res_s1_pad <- pad_res(res_s1, max_day)
-    res_s2_pad <- pad_res(res_s2, max_day)
+res_s1_pad <- pad_res(res_s1, max_day)
+res_s2_pad <- pad_res(res_s2, max_day)
 
-    # 3. Weighted average of the posterior survival
-    prop_s1 <- n_s1 / (n_s1 + n_s2)
-    prop_s2 <- n_s2 / (n_s1 + n_s2)
+# 3. Weighted average of the posterior survival
+prop_s1 <- n_s1 / (n_s1 + n_s2)
+prop_s2 <- n_s2 / (n_s1 + n_s2)
 
-    overall_posterior <- prop_s1 * res_s1_pad + prop_s2 * res_s2_pad
-    overall_mean <- apply(overall_posterior, 1, mean)
+overall_posterior <- prop_s1 * res_s1_pad + prop_s2 * res_s2_pad
+overall_mean <- apply(overall_posterior, 1, mean)
 
     # Quick plot
     plot(
