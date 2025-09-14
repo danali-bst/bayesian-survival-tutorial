@@ -61,7 +61,7 @@ Below we illustrate how to use beta.bin on a **single stratum** of fictitious su
       censor.vec = censor.vec, 
       n.mc       = 2000,
       alpha      = 0.001, 
-      beta       = 0.01
+      beta       = 1
     )
 
     dim(result_matrix)
