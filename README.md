@@ -100,7 +100,7 @@ Interpretation: Each row in result_matrix is the time index; each column is a po
     # Each stratum has (time, censor) data for some subset of subjects.
 
     # Stratum 1
-    time_s1   <- c(1,2,3,5,5,7,10,12)
+    time_s1   <- c(1,2,3,5,5,7,10,15)
     censor_s1 <- c(1,1,1,0,1,1, 0,1)
     n_s1      <- length(time_s1)
 
@@ -127,42 +127,15 @@ Interpretation: Each row in result_matrix is the time index; each column is a po
 
 To get an overall survival curve for the entire population (both strata):
 
-1. Extend each matrix to the maximum day across all strata (e.g., day 15).
-2. Weight each curve by the stratum’s proportion in the overall sample.
-3. Sum those weighted survival curves at each time point.
+1. Weight each curve by the stratum’s proportion in the overall sample.
+2. Sum those weighted survival curves at each time point.
 
 ```r
-# 1. Identify the maximum day across strata
-max_day <- max(time_s1, time_s2)
-
-# 2. Pad each matrix up to 'max_day'
-pad_res <- function(res_matrix, new_max_day) {
-  old_max_day <- nrow(res_matrix)
-  if (old_max_day < new_max_day) {
-    last_row <- res_matrix[old_max_day, , drop = FALSE]
-    padded <- rbind(
-      res_matrix,
-      matrix(
-        rep(last_row, new_max_day - old_max_day),
-        nrow = new_max_day - old_max_day,
-        ncol = ncol(res_matrix),
-        byrow = TRUE
-      )
-    )
-    return(padded)
-  } else {
-    return(res_matrix)
-  }
-}
-
-res_s1_pad <- pad_res(res_s1, max_day)
-res_s2_pad <- pad_res(res_s2, max_day)
-
-# 3. Weighted average of the posterior survival
+#Weighted average of the posterior survival
 prop_s1 <- n_s1 / (n_s1 + n_s2)
 prop_s2 <- n_s2 / (n_s1 + n_s2)
 
-overall_posterior <- prop_s1 * res_s1_pad + prop_s2 * res_s2_pad
+overall_posterior <- prop_s1 * res_s1 + prop_s2 * res_s2
 overall_mean <- apply(overall_posterior, 1, mean)
 ```
 
@@ -200,7 +173,7 @@ Result: overall_posterior is a matrix of size [max_day x n.mc], combining the dr
 ## 6. Methodology References
 
 1. Manuscript section “Bayesian inferences of the survival function and its summary measures.”
-2. Beta-Binomial Background: Hjort (1990), Fleming & Harrington (1991).
+2. Beta-Binomial Background: Hjort (1990)
 3. RMST Discussion: Various references in manuscript about the advantages over hazard ratios.
 
 --------------------------------------------------------------------------------
@@ -209,5 +182,6 @@ Result: overall_posterior is a matrix of size [max_day x n.mc], combining the dr
 - This method does not rely on proportional hazards or a hazard ratio.
 - It is straightforward, requiring only binomial likelihoods and Beta priors.
 - For real-world data with more strata, repeat the same pattern: call beta.bin for each stratum, align row lengths, then weight and sum the posterior draws.
+- If strata have different follow-up, use the minimum of the maximimum follow-up times across strata as your truncation time for RMST and as your last observation in time.vec for generating survival curve, to ensure there is no extrapolation. 
 
 **We hope this tutorial helps you explore a model-free Bayesian approach to stratified survival analysis!** For questions or contributions, please open an issue or pull request in this repository, or contact Daniel Paydarfar at danielpaydarfar@fas.harvard.edu.
