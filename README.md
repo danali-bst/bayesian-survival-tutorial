@@ -131,6 +131,9 @@ To get an overall survival curve for the entire population (both strata):
 2. Sum those weighted survival curves at each time point.
 
 ```r
+#Follow-up time used for plotting / RMST (if follow-up times between strata not the same, see note in discussion)
+max_day = max(time_s1, time_s2)
+
 #Weighted average of the posterior survival
 prop_s1 <- n_s1 / (n_s1 + n_s2)
 prop_s2 <- n_s2 / (n_s1 + n_s2)
