@@ -1,7 +1,7 @@
 # Bayesian Stratified Survival Analysis Tutorial
 
 This tutorial demonstrates how to conduct a **stratified** Bayesian survival analysis using a discrete-time **beta-binomial** approach, as described in the paper:
-> Bayesian Stratified Analysis of Treatment Effects with Event Time Observations in Comparative Clinical Trials: A Model-Free Approach.
+> Bayesian and Frequentist Stratified Analysis of Treatment Effects with Survival Data in Comparative Trials.
 
 We use the **beta.bin** function, which implements the basic building block for obtaining posterior samples of the survival function from a single group (or stratum). Once we have posterior draws for each stratum, we can combine them (via stratified weights) to derive an overall survival curve, restricted mean survival time (RMST), or other summary measures, as discussed in the manuscript.
 
